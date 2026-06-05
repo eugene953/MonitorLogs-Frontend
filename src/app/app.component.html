@@ -1,0 +1,6 @@
+<div class="app-shell">
+	<app-header *ngIf="authService.isAuthenticated()"></app-header>
+	<main class="main-content" [class.no-header]="!authService.isAuthenticated()">
+		<router-outlet></router-outlet>
+	</main>
+</div>

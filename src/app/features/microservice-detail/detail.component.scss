@@ -1,0 +1,247 @@
+.detail-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-left h2 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.btn-back {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glow);
+  color: var(--text-muted);
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.btn-back:hover {
+  color: var(--text-main);
+}
+
+.env-badge {
+  padding: 2px 10px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.env-badge.development { background: rgba(99, 102, 241, 0.1); color: #818cf8; }
+.env-badge.staging { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+.env-badge.production { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+
+/* Metrics Grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.metric-card {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.metric-card h4 {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.metric-value {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.mono {
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 500;
+  word-break: break-all;
+  color: var(--text-main);
+}
+
+.accent-up { color: #10b981; }
+.accent-down { color: #ef4444; }
+.accent-warn { color: #f59e0b; }
+
+/* Chart Section */
+.chart-section {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chart-section h3 {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* Panels */
+.panels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.panel {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.panel h3 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.panel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.panel-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 12px;
+}
+
+.panel-item-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.method-badge {
+  background: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 10px;
+}
+
+.endpoint {
+  font-family: monospace;
+  font-size: 12px;
+  color: var(--text-main);
+}
+
+.status-code {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.job-name {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.error-text {
+  color: #ef4444;
+  font-size: 11px;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.email {
+  color: var(--text-main);
+}
+
+.reason {
+  color: #f59e0b;
+}
+
+.ip {
+  font-family: monospace;
+  font-size: 10px;
+  color: var(--text-dark);
+}
+
+.empty-text {
+  color: var(--text-dark);
+  font-size: 12px;
+  text-align: center;
+  padding: 16px;
+}
+
+.action-row {
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--accent-primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 15px var(--accent-primary-glow);
+}
+
+.btn-danger {
+  background: var(--status-down);
+  color: #fff;
+}
+
+.btn-danger:hover {
+  box-shadow: 0 0 15px var(--status-down-glow);
+}

@@ -1,0 +1,126 @@
+/* Global observatory styling & premium glassmorphism dark-theme styling */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-app: #0b0f19;
+  --bg-card: rgba(17, 24, 39, 0.7);
+  --border-glow: rgba(255, 255, 255, 0.08);
+  --border-focus: rgba(99, 102, 241, 0.4);
+  --accent-primary: #6366f1;
+  --accent-primary-glow: rgba(99, 102, 241, 0.15);
+  --status-up: #10b981;
+  --status-up-glow: rgba(16, 185, 129, 0.2);
+  --status-down: #ef4444;
+  --status-down-glow: rgba(239, 68, 68, 0.2);
+  --status-checking: #f59e0b;
+  --status-checking-glow: rgba(245, 158, 11, 0.2);
+  --text-main: #f3f4f6;
+  --text-muted: #9ca3af;
+  --text-dark: #4b5563;
+  --bg-input: rgba(255, 255, 255, 0.05);
+  --shadow-panel: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+body.light-theme {
+  --bg-app: #f9fafb;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --border-glow: rgba(0, 0, 0, 0.08);
+  --border-focus: rgba(99, 102, 241, 0.6);
+  --accent-primary: #4f46e5;
+  --accent-primary-glow: rgba(79, 70, 229, 0.15);
+  --status-up: #059669;
+  --status-up-glow: rgba(5, 150, 105, 0.2);
+  --status-down: #dc2626;
+  --status-down-glow: rgba(220, 38, 38, 0.2);
+  --status-checking: #d97706;
+  --status-checking-glow: rgba(217, 119, 6, 0.2);
+  --text-main: #111827;
+  --text-muted: #4b5563;
+  --text-dark: #9ca3af;
+  --bg-input: rgba(0, 0, 0, 0.03);
+  --shadow-panel: 0 8px 32px 0 rgba(31, 38, 135, 0.06);
+
+  background-color: var(--bg-app);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.03) 0px, transparent 50%);
+  color: var(--text-main);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-app);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
+  color: var(--text-main);
+  font-family: 'Outfit', sans-serif;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Glassmorphism Container Utility */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glow);
+  border-radius: 16px;
+  box-shadow: var(--shadow-panel);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Glow Effects */
+.glow-up {
+  box-shadow: 0 0 15px var(--status-up-glow);
+}
+.glow-down {
+  box-shadow: 0 0 15px var(--status-down-glow);
+}
+.glow-checking {
+  box-shadow: 0 0 15px var(--status-checking-glow);
+}
+
+/* Forms & Inputs */
+.form-input {
+  background: var(--bg-input);
+  border: 1px solid var(--border-glow);
+  border-radius: 8px;
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  padding: 10px 14px;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 10px var(--accent-primary-glow);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

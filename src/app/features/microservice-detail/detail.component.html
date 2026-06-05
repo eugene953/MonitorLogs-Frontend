@@ -1,0 +1,109 @@
+<div class="detail-page" *ngIf="service">
+  <div class="detail-header">
+    <div class="header-left">
+      <button class="btn-back" (click)="goBack()">← Back</button>
+      <div>
+        <h2>{{ service.name }}</h2>
+        <span class="env-badge" [ngClass]="service.environment">{{ service.environment }}</span>
+      </div>
+    </div>
+    <app-status-badge [status]="service.status"></app-status-badge>
+  </div>
+
+  <!-- Metrics Grid -->
+  <div class="metrics-grid">
+    <div class="metric-card glass-panel">
+      <h4>Base URL</h4>
+      <p class="metric-value mono">{{ service.baseUrl }}</p>
+    </div>
+    <div class="metric-card glass-panel">
+      <h4>Health Endpoint</h4>
+      <p class="metric-value mono">{{ service.healthEndpoint }}</p>
+    </div>
+    <div class="metric-card glass-panel">
+      <h4>Failed Requests</h4>
+      <p class="metric-value accent-down">{{ failedRequestsCount }}</p>
+    </div>
+    <div class="metric-card glass-panel">
+      <h4>Auth Failures</h4>
+      <p class="metric-value accent-warn">{{ authFailuresCount }}</p>
+    </div>
+    <div class="metric-card glass-panel">
+      <h4>Failed Jobs</h4>
+      <p class="metric-value accent-down">{{ failedJobsCount }}</p>
+    </div>
+    <div class="metric-card glass-panel">
+      <h4>Active Sessions</h4>
+      <p class="metric-value accent-up">{{ activeSessionsCount }}</p>
+    </div>
+  </div>
+
+  <!-- Latency Chart -->
+  <div class="chart-section glass-panel">
+    <h3>Response Time (Last 30 checks)</h3>
+    <app-latency-chart
+      [dataPoints]="latencyData"
+      [labels]="latencyLabels"
+    ></app-latency-chart>
+  </div>
+
+  <!-- Quick Access Panels -->
+  <div class="panels-grid">
+    <!-- Recent Failed Requests -->
+    <div class="panel glass-panel">
+      <h3>Recent Failed Requests</h3>
+      <div class="panel-list">
+        <div class="panel-item" *ngFor="let item of failedRequests">
+          <div class="panel-item-main">
+            <span class="method-badge">{{ item.method }}</span>
+            <span class="endpoint">{{ item.endpoint }}</span>
+          </div>
+          <div class="panel-item-meta">
+            <span class="status-code">{{ item.statusCode }}</span>
+            <span class="time">{{ item.responseTime }}ms</span>
+          </div>
+        </div>
+        <p class="empty-text" *ngIf="failedRequests.length === 0">No failed requests</p>
+      </div>
+    </div>
+
+    <!-- Recent Auth Failures -->
+    <div class="panel glass-panel">
+      <h3>Recent Auth Failures</h3>
+      <div class="panel-list">
+        <div class="panel-item" *ngFor="let item of authFailures">
+          <div class="panel-item-main">
+            <span class="email">{{ item.email }}</span>
+          </div>
+          <div class="panel-item-meta">
+            <span class="reason">{{ item.reason }}</span>
+            <span class="ip">{{ item.ip }}</span>
+          </div>
+        </div>
+        <p class="empty-text" *ngIf="authFailures.length === 0">No auth failures</p>
+      </div>
+    </div>
+
+    <!-- Recent Failed Jobs -->
+    <div class="panel glass-panel">
+      <h3>Recent Failed Jobs</h3>
+      <div class="panel-list">
+        <div class="panel-item" *ngFor="let item of failedJobs">
+          <div class="panel-item-main">
+            <span class="job-name">{{ item.jobName }}</span>
+          </div>
+          <div class="panel-item-meta">
+            <span class="error-text">{{ item.error }}</span>
+          </div>
+        </div>
+        <p class="empty-text" *ngIf="failedJobs.length === 0">No failed jobs</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Links -->
+  <div class="action-row">
+    <button class="btn btn-primary" (click)="viewLogs()">Open Logs Explorer →</button>
+    <button class="btn btn-danger" (click)="deleteService()">Delete Microservice</button>
+  </div>
+</div>

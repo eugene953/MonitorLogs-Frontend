@@ -1,0 +1,57 @@
+<div class="logs-page">
+  <div class="logs-header">
+    <div class="header-left">
+      <button class="btn-back" (click)="goBack()">← Back</button>
+      <h2>Logs Explorer</h2>
+      <span class="view-mode-badge" *ngIf="viewMode === 'project'">Project View</span>
+    </div>
+    <div class="filters-bar">
+      <select class="form-input filter-select" [(ngModel)]="selectedLevel" (ngModelChange)="applyFilters()">
+        <option value="">All Levels</option>
+        <option value="info">Info</option>
+        <option value="warn">Warning</option>
+        <option value="error">Error</option>
+        <option value="debug">Debug</option>
+      </select>
+      <input
+        type="text"
+        class="form-input search-input"
+        placeholder="Search logs..."
+        [(ngModel)]="searchQuery"
+        (keyup.enter)="applyFilters()"
+      />
+      <button class="btn btn-primary" (click)="applyFilters()">Search</button>
+    </div>
+  </div>
+
+  <div class="logs-stats">
+    <div class="stat-chip">Total: <strong>{{ totalLogs }}</strong></div>
+    <div class="stat-chip live" *ngIf="liveEntries > 0">
+      <span class="live-dot"></span>
+      +{{ liveEntries }} live
+    </div>
+  </div>
+
+  <div class="logs-container glass-panel">
+    <div class="log-row" *ngFor="let log of logs; trackBy: trackById" [ngClass]="'level-' + log.level">
+      <div class="log-meta">
+        <span class="log-level-badge" [ngClass]="log.level">{{ log.level | uppercase }}</span>
+        <span class="log-time">{{ log.timestamp | date:'HH:mm:ss.SSS' }}</span>
+        <span class="service-name-badge" *ngIf="viewMode === 'project' && log.serviceName">{{ log.serviceName }}</span>
+      </div>
+      <div class="log-message">{{ log.message }}</div>
+      <div class="log-stack" *ngIf="log.stack">{{ log.stack }}</div>
+    </div>
+
+    <div class="empty-logs" *ngIf="logs.length === 0 && !isLoading">
+      <p>No logs found for this service.</p>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination" *ngIf="totalLogs > pageSize">
+    <button class="btn btn-secondary" [disabled]="currentPage <= 0" (click)="prevPage()">Previous</button>
+    <span class="page-info">Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+    <button class="btn btn-secondary" [disabled]="currentPage >= totalPages - 1" (click)="nextPage()">Next</button>
+  </div>
+</div>
